@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 // por sua vez se torna uma rota para a nossa API.
 @RestController
 // O `@RequestMapping` serve para mapear a rota `missoes` API.
-@RequestMapping("missoes")
+@RequestMapping("/missoes")
 public class MissaoController {
 
     // O acesso a url será http://localhost:8080/missoes/listar.
     @GetMapping("/listar")
-    public String alterarMissoes() {
+    public String listarMissoes() {
         return "Missóes listadas com sucesso";
     }
 
