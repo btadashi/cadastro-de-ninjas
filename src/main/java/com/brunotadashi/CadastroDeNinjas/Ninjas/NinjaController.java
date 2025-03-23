@@ -8,7 +8,6 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    // Injeta a Service.
     private NinjaService ninjaService;
 
     public NinjaController(NinjaService ninjaService) {
@@ -20,12 +19,12 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
+    // Cria um novo ninja
     @PostMapping("/criar")
-    public String criarNinja() {
-        return "Ninja criado";
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.criarNinja(ninja);
     }
 
-    // Mostrar um ninja por id
     @GetMapping("/listar/{id}")
     public NinjaModel listarNinjaPorId(@PathVariable Long id) {
         return ninjaService.listarNinjaPorId(id);
