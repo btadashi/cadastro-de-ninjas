@@ -19,7 +19,6 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
-    // Cria um novo ninja
     @PostMapping("/criar")
     public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
         return ninjaService.criarNinja(ninja);
@@ -30,7 +29,6 @@ public class NinjaController {
         return ninjaService.listarNinjaPorId(id);
     }
 
-    // Rota que atualiza as informações de um ninja.
     @PutMapping("/alterar/{id}")
     public NinjaModel alterarNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
         return ninjaService.atualizarNinja(id, ninjaAtualizado);

@@ -27,16 +27,11 @@ public class NinjaService {
         return ninjaRepository.save(ninja);
     }
 
-    // Deleta um ninja por id.
-    // Tem que ser um método `void`, pois não precisamos retornar nada.
     public void deletarNinja(Long id) {
         ninjaRepository.deleteById(id);
     }
 
-    // Atualiza as informações de um ninja.
     public NinjaModel atualizarNinja(Long id, NinjaModel ninjaAtualizado) {
-        // Se o ninja existir, grava o `id` no objeto do ninja atualizado. Em seguida,
-        // persiste o ninja atualizado no banco de dados.
         if (ninjaRepository.existsById(id)) {
             ninjaAtualizado.setId(id);
             return ninjaRepository.save(ninjaAtualizado);
