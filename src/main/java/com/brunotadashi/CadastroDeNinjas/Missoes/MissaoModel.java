@@ -25,7 +25,6 @@ public class MissaoModel {
     private String dificuldade;
 
     @OneToMany(mappedBy = "missao")
-    // Ignora a serialização para a lista de ninjas.
     @JsonIgnore
     private List<NinjaModel> ninjas;
 }
