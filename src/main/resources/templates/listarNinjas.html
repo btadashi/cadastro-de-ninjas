@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tabela de Ninjas</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- ou use <style> no lugar -->
+  <style>
+        body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .modern-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .modern-table thead {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .modern-table th, .modern-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .modern-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      margin: 0.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-info {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .btn-warning {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+<h1 class="title">Lista de Ninjas</h1>
+<div class="table-container">
+  <table class="modern-table">
+    <thead>
+    <tr>
+      <th>Imagem</th>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Email</th>
+      <th>Rank</th>
+      <th>Missões</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ninja : ${ninjas}">
+      <td><img th:src="${ninja.imgUrl}" width="100" height="100" class="avatar"></td>
+      <td th:text="${ninja.id}"></td>
+      <td th:text="${ninja.nome}"></td>
+      <td th:text="${ninja.idade}"></td>
+      <td th:text="${ninja.email}"></td>
+      <td th:text="${ninja.rank}"></td>
+      <td>
+            <span th:if="${ninja.missao}">
+              <span th:text="${ninja.missao.nome}"></span>, Dificuldade:
+              <span th:text="${ninja.missao.dificuldade}"></span>
+            </span>
+        <span th:if="${ninja.missao == null}">
+              Sem missões cadastradas para o ninja
+            </span>
+      </td>
+      <td>
+        <a href="#" class="btn btn-info">Ver detalhes</a>
+        <a href="#" class="btn btn-warning">Alterar</a>
+        <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}" class="btn btn-danger">Deletar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
